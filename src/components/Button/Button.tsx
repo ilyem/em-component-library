@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledButton = styled.button`
 cursor: pointer;
 `;
+
 export interface Props {
   label: string;
 }

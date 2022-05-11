@@ -3,11 +3,10 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/ilyem"
   },
-  "version": "0.0.1",
+  "version": "0.0.8",
   "description": "A react component library",
   "scripts": {
-    "rollup": "rollup -c",
-    "test": "jest"
+    "rollup": "rollup -c"
   },
   "author": "Emilia Chiroiu",
   "license": "ISC",
@@ -20,17 +19,14 @@
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",
     "@testing-library/react": "^12.1.2",
-    "@types/jest": "^27.0.2",
     "@types/react": "^17.0.34",
     "@types/styled-components": "^5.1.25",
-    "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "babel-plugin-styled-components": "^2.0.7",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.3.1",
-    "react": "^18.1.0",
+    "react": "^17.0.0",
     "rollup": "^2.60.0",
     "rollup-plugin-dts": "^4.0.1",
     "sass": "^1.43.5",
@@ -38,6 +34,9 @@
     "style-loader": "^3.3.1",
     "styled-components": "^5.3.5",
     "typescript": "^4.4.4"
+  },
+  "peerDependencies": {
+    "styled-components": ">= 5"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
