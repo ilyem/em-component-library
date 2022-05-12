@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "declaration": true,
+    "declaration": true, //Output a .d.ts file for our library types
     "declarationDir": "types",
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "module": "ESNext",
+    "jsx": "react", //Transform JSX into React code
+    "module": "ESNext", //Generate modern JS modules for our library
     "moduleResolution": "node",
-    "outDir": "dist",
+    "outDir": "dist", //Directory where the project will be generated
     "rootDir": "src",
     "skipLibCheck": true,
-    "sourceMap": true,
+    "sourceMap": true, //Mapping JS code back to its TS file origins for debugging
     "strict": true,
   }
 }
