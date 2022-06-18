@@ -54,8 +54,5 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
-  "dependencies": {
-    "save-dev": "^0.0.1-security"
-  }
+  "types": "dist/index.d.ts"
 }

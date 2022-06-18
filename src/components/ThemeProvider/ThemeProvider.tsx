@@ -7,6 +7,11 @@ export const GlobalStyles = createGlobalStyle`
  * {
      line-height: 1.5;
  }
+ input, label {
+    border: 0;
+    padding: 0;
+    margin: 0;
+ }
 `;
 
 

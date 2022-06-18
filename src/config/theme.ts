@@ -8,9 +8,11 @@ export const themeDefault: ThemeType = {
         primaryDark: '#001970',
         disabled: '#cccccc',
         textOnPrimary: '#ffffff',
-        textOnSecondary: '#707070',
+        textOnSecondary: '#000000',
+        textPlaceholder: '#0000004d',
         textOnDisabled: '#888888',
         border: '#0000001f',
+        error: '#C8102E'
     },
     font: {
        family: 'Verdana, sans-serif',
@@ -19,14 +21,14 @@ export const themeDefault: ThemeType = {
            bold: '700',
        },
        size: {
-           title: '34px',
-           subtitle: '24px',
-           boldText: '16px',
-           text: '12px',
+           title: 34,
+           subtitle: 24,
+           boldText: 16,
+           text: 13,
         },
     },
     border: {
-       size: '2px',
+       size: '1px',
        radius: '4px',
    },
    spacing: {

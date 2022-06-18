@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { ThemeType } from "../../types";
 import { useTheme } from 'styled-components';
+import { themeDefault } from "../../config/theme";
 
 type ButtonType = 'accent' | 'light';
 
-const StyledButton = styled.button<{theme: ThemeType, $colours: {[prop: string]: string} }>`
+const StyledButton = styled.button<{theme?: ThemeType, $colours: {[prop: string]: string} }>`
 cursor: pointer;
 border: ${({theme}) => `${theme.border.size} solid`};
 border-radius: ${({theme}) => theme.border.radius};
@@ -60,8 +61,9 @@ const Button: React.FC<Props> = ({label, onClick, type = "accent", disabled = fa
 
   return <StyledButton
   $colours={buttonColours}
-  onClick={onClick}
-  >{label}</StyledButton>;
+  onClick={onClick}>
+    {label}
+    </StyledButton>;
 };
 
 export default Button;

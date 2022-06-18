@@ -7,8 +7,10 @@ export interface ThemeType {
      disabled: string,
      textOnPrimary: string,
      textOnSecondary: string,
+     textPlaceholder: string,
      textOnDisabled: string,
      border:  string, 
+     error: string
     },
     font: {
         family: string,
@@ -17,10 +19,10 @@ export interface ThemeType {
             bold: string,
         },
         size: {
-            title: string,
-            subtitle: string,
-            boldText: string,
-            text: string,
+            title: number,
+            subtitle: number,
+            boldText: number,
+            text: number,
          },
      },
      border: {
