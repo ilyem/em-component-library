@@ -1,33 +1,30 @@
-import React from 'react';
-import styled, { useTheme } from 'styled-components';
-import { FontType, ThemeType } from '../../types';
-
-
+import React from "react";
+import styled, { useTheme } from "styled-components";
+import { FontType, SizeText, ThemeType } from "../../types";
 
 interface StyledTextProps {
   $size: number;
-  $type: FontType;
   tag: string;
   $color?: string;
   $isUppercase?: boolean;
   $lineHeight?: number;
   children?: React.ReactNode;
-  theme: ThemeType
-
+  theme: ThemeType;
+  $weight: FontType;
 }
 
-const StyledText = styled(({ theme, children, tag, ...props }: StyledTextProps) =>
-  React.createElement(tag, props, children)
+const StyledText = styled(
+  ({ theme, children, tag, ...props }: StyledTextProps) =>
+    React.createElement(tag, props, children)
 )<StyledTextProps>`
   font-size: ${({ $size }) => `${$size}px`};
   line-height: ${({ $lineHeight }) =>
-    $lineHeight ? `${$lineHeight}px` : '1.25em'};
-  font-family: ${({ theme }) =>
-    `${theme.font.family}, serif`};
-    font-weight: ${({ theme, $type }) => `${theme.font.weight[$type]}`};
+    $lineHeight ? `${$lineHeight}px` : "1.25em"};
+  font-family: ${({ theme }) => `${theme.font.family}, serif`};
+  font-weight: ${({ theme, $weight }) => `${theme.font.weight[$weight]}`};
   color: ${({ theme, $color }) => $color || theme.colours.primary};
   text-transform: ${({ $isUppercase }) =>
-    $isUppercase ? 'uppercase' : 'none'};
+    $isUppercase ? "uppercase" : "none"};
 `;
 
 export interface TextProps {
@@ -36,30 +33,31 @@ export interface TextProps {
   lineHeight?: number;
   size?: number;
   tag?: string;
-  type?: FontType;
+  type?: keyof SizeText;
   children?: React.ReactNode;
-
+  weight?: FontType;
 }
 
 function Text<T>({
   children,
-  tag = 'p',
-  type = 'regular',
+  tag = "p",
+  type = "text",
   size,
   lineHeight,
+  weight = "regular",
   color,
   isUppercase = false,
   ...props
 }: TextProps & T): JSX.Element {
-  const {font} = useTheme() as ThemeType;
-  const inputSize = size || font.size.text;
+  const { font } = useTheme() as ThemeType;
+  const inputSize = size || font.size[type];
   return (
     <StyledText
       $color={color}
       $isUppercase={isUppercase}
       $lineHeight={lineHeight}
       $size={inputSize}
-      $type={type}
+      $weight={weight}
       tag={tag}
       {...props}
     >

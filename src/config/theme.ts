@@ -32,10 +32,10 @@ export const themeDefault: ThemeType = {
        radius: '4px',
    },
    spacing: {
-       fourPx: '4px',
-       eightPx: '8px',
-       sixteenPx: '16px',
-       thirtyTwoPx: '32px',
-       sixtyFourPx: '64px',
+       xs: '4px',
+       s: '8px',
+       m: '16px',
+       l: '32px',
+       xl: '64px',
    }
    }
