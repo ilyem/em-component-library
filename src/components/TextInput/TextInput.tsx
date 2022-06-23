@@ -14,6 +14,8 @@ const Wrapper = styled.div<{ $alignVertical: boolean }>`
 const Label = styled((props) => <Text tag="label" {...props} />)`
   color: ${({ $error, theme }) =>
     $error ? theme.colours.error : theme.colours.primary};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
+  text-transform: uppercase;
   margin: ${({ $alignVertical }) =>
     $alignVertical ? "0 8px 4px 0" : "8px 8px 0 0"};
   white-space: nowrap;

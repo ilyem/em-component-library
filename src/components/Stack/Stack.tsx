@@ -2,24 +2,34 @@ import React from "react";
 import styled, { useTheme } from "styled-components";
 import { SizeSpace, ThemeType } from "../../types";
 
-const StyledStack = styled.div<{ $spaceSize: string }>`
+const StyledStack = styled.div<{
+  $spaceSize: string;
+  $direction: "column" | "row";
+}>`
   display: flex;
-  flex-direction: column;
-
+  flex-direction: ${({ $direction }) => $direction};
+  width: 100%;
   & > *:not(:last-child) {
-    margin-bottom: ${({ $spaceSize }) => $spaceSize};
+    ${({ $direction, $spaceSize }) =>
+      ` margin-${$direction == "column" ? "bottom" : "right"}: ${$spaceSize};`};
   }
 `;
 
 type StackProps = React.ComponentPropsWithoutRef<"div"> & {
   space?: keyof SizeSpace;
+  direction?: "column" | "row";
 };
 
-const Stack: React.FC<StackProps> = ({ children, space, ...props }) => {
+const Stack: React.FC<StackProps> = ({
+  children,
+  space,
+  direction = "column",
+  ...props
+}) => {
   const { spacing } = useTheme() as ThemeType;
   const spaceSize = space ? spacing[space] : "0px";
   return (
-    <StyledStack $spaceSize={spaceSize} {...props}>
+    <StyledStack $spaceSize={spaceSize} $direction={direction} {...props}>
       {children}
     </StyledStack>
   );

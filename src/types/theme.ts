@@ -15,6 +15,7 @@ export interface ThemeType {
   colours: {
     primary: string;
     secondary: string;
+    accent: string;
     primaryLight: string;
     primaryDark: string;
     disabled: string;

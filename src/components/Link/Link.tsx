@@ -1,23 +1,30 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-import { Link as ReactLink } from "react-router-dom";
+import Text from "../Text";
+import { TextProps } from "../Text/Text";
 
-const StyledLink = styled(ReactLink)`
+const StyledLink = styled.a`
   font-family: ${({ theme }) => theme.font.family};
-  color: ${({ theme }) => theme.colours.primaryLight};
+  p {
+    color: ${({ theme }) => theme.colours.primaryLight};
 
-  :hover {
-    color: ${({ theme }) => theme.colours.primaryDark};
+    :hover {
+      color: ${({ theme }) => theme.colours.primaryDark};
+    }
   }
 `;
 
-export interface Props {
+export interface Props extends TextProps {
   to: string;
   children: ReactNode;
 }
 
-const Link: React.FC<Props> = ({ to, children }) => {
-  return <StyledLink to={to}>{children}</StyledLink>;
+const Link: React.FC<Props> = ({ to, children, ...props }) => {
+  return (
+    <StyledLink href={to}>
+      <Text {...props}>{children}</Text>
+    </StyledLink>
+  );
 };
 
 export default Link;

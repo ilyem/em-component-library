@@ -17,6 +17,8 @@ const StyledButton = styled.button<{
   padding: ${({ theme }) => theme.spacing.s};
   min-width: 100px;
   text-transform: uppercase;
+  font-weight: ${({ theme }) => theme.font.weight.bold};
+  font-size: ${({ theme }) => theme.font.size.boldText}px;
   &:disabled,
   &:disabled:hover {
     pointer-events: none;
