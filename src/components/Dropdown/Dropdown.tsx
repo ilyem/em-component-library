@@ -6,15 +6,15 @@ import Icon from "../Icon";
 import Text from "../Text";
 import { ThemeType } from "../../types";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $alignVertical: boolean }>`
   display: flex;
-  align-items: center;
+  flex-direction: ${({ $alignVertical }) =>
+    $alignVertical ? "column" : "row"};
 `;
 const Select = styled.select`
   display: none;
 `;
 const SelectionWrapper = styled.div`
-  margin-left: 8px;
   position: relative;
   min-width: 320px;
   flex: 1;
@@ -69,7 +69,11 @@ const RowWrapper = styled.div`
     margin-bottom: 0;
   }
 `;
-
+const LabelWrapper = styled.div<{ $alignVertical: boolean }>`
+  display: flex;
+  margin: ${({ $alignVertical }) =>
+    $alignVertical ? "0 8px 4px 0" : "8px 8px 0 0"};
+`;
 interface DropdownOption {
   id: string;
   value: string;
@@ -105,6 +109,7 @@ export interface Props {
   name: string;
   placeholder: string;
   label: string;
+  labelPlacement?: "top" | "left";
   isMultiselect: boolean;
   onSelect: (value: DropdownOption["value"]) => void;
 }
@@ -113,6 +118,7 @@ const Dropdown: React.FC<Props> = ({
   name,
   placeholder,
   label,
+  labelPlacement = "left",
   isMultiselect,
   onSelect,
 }) => {
@@ -121,6 +127,7 @@ const Dropdown: React.FC<Props> = ({
   const [selected, setSelected] = useState(getSelectedOptions(options));
   const [dropdownOptions, setDropdownOptions] = useState(options);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const alignVertical = labelPlacement === "top";
 
   const handleToggle = () => {
     setShow((prev) => !prev);
@@ -158,7 +165,7 @@ const Dropdown: React.FC<Props> = ({
     onSelect(event.target.id);
   };
   return (
-    <Wrapper>
+    <Wrapper $alignVertical={alignVertical}>
       <Select id={name} multiple={isMultiselect} name={name}>
         {dropdownOptions.map((option) => (
           <option key={option.id} value={option.value}>
@@ -166,9 +173,13 @@ const Dropdown: React.FC<Props> = ({
           </option>
         ))}
       </Select>
-      <Text tag="label" htmlFor={name} color={colours.primary}>
-        {label}
-      </Text>
+
+      <LabelWrapper $alignVertical={alignVertical}>
+        <Text tag="label" htmlFor={name} color={colours.primary}>
+          {label}
+        </Text>
+      </LabelWrapper>
+
       <SelectionWrapper>
         <SelectedWrapper onClick={handleShowOptions}>
           {selected.length ? (
@@ -192,7 +203,7 @@ const Dropdown: React.FC<Props> = ({
 
           <OptionsWrapper>
             {dropdownOptions.length > 0 && (
-              <OptionsSpacer className="optionsSpacer">
+              <OptionsSpacer>
                 {dropdownOptions.map(({ value, isSelected }) => {
                   return (
                     <RowWrapper key={value}>

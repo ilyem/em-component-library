@@ -95,7 +95,6 @@ const Button: React.FC<Props> = ({
       $coloursHovered={stylesMap[type].hovered}
       onClick={onClick}
     >
-      {/* TODO is hovered set color  */}
       <Text
         size={sizeText}
         weight="bold"

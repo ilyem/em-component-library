@@ -51,7 +51,6 @@ import HeartFill from "./heart-fill.svg";
 import Chart from "./chart-line.svg";
 import ImageAdd from "./image-add-line.svg";
 import ArrowDown from "./arrow-down-line.svg";
-import Emersya from "./emersya.svg";
 import Star from "./star.svg";
 
 const icons = {
@@ -108,7 +107,6 @@ const icons = {
   chart: Chart,
   imageAdd: ImageAdd,
   arrowDown: ArrowDown,
-  emersya: Emersya,
   star: Star,
 };
 
