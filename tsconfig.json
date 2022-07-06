@@ -14,5 +14,6 @@
     "skipLibCheck": true,
     "sourceMap": true, //Mapping JS code back to its TS file origins for debugging
     "strict": true,
-  }
+  },
+  "include": ["src/components", "custom.d.ts"],
 }

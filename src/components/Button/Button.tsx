@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { ThemeType } from "../../types";
 import { useTheme } from "styled-components";
-import { themeDefault } from "../../config/theme";
+import Text from "../Text";
 
-type ButtonType = "accent" | "light";
+type ButtonType = "primary" | "light";
 
 const StyledButton = styled.button<{
   $colours: { [prop: string]: string };
@@ -17,7 +17,6 @@ const StyledButton = styled.button<{
   padding: ${({ theme }) => theme.spacing.s};
   min-width: 100px;
   text-transform: uppercase;
-  font-weight: ${({ theme }) => theme.font.weight.bold};
   font-size: ${({ theme }) => theme.font.size.boldText}px;
   &:disabled,
   &:disabled:hover {
@@ -33,22 +32,27 @@ export interface Props {
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   type?: ButtonType;
   disabled?: boolean;
+  sizeText?: number;
+  isAccent?: boolean;
 }
 
 const Button: React.FC<Props> = ({
   label,
   onClick,
-  type = "accent",
+  type = "primary",
+  isAccent = false,
   disabled = false,
+  sizeText,
 }) => {
   const { colours } = useTheme() as ThemeType;
-
+  const colourPrimary = isAccent ? colours.accent : colours.primary;
+  const colourHover = isAccent ? colours.accentLight : colours.primaryDark;
   const stylesMap = {
-    accent: {
+    primary: {
       enabled: {
-        "background-color": colours.primary,
+        "background-color": colourPrimary,
         color: colours.textOnPrimary,
-        "border-color": colours.primary,
+        "border-color": colourPrimary,
       },
       disabled: {
         "background-color": colours.disabled,
@@ -56,16 +60,16 @@ const Button: React.FC<Props> = ({
         "border-color": "transparent",
       },
       hovered: {
-        "background-color": colours.primaryDark,
+        "background-color": colourHover,
         color: colours.textOnPrimary,
-        "border-color": colours.primaryDark,
+        "border-color": colourHover,
       },
     },
     light: {
       enabled: {
         "background-color": "transparent",
-        color: colours.primary,
-        "border-color": colours.primary,
+        color: colourPrimary,
+        "border-color": colourPrimary,
       },
       disabled: {
         "background-color": "transparent",
@@ -74,8 +78,8 @@ const Button: React.FC<Props> = ({
       },
       hovered: {
         "background-color": "transparent",
-        color: colours.primaryDark,
-        "border-color": colours.primaryDark,
+        color: colourHover,
+        "border-color": colourHover,
       },
     },
   };
@@ -91,7 +95,15 @@ const Button: React.FC<Props> = ({
       $coloursHovered={stylesMap[type].hovered}
       onClick={onClick}
     >
-      {label}
+      {/* TODO is hovered set color  */}
+      <Text
+        size={sizeText}
+        weight="bold"
+        isUppercase
+        color={buttonColours.color}
+      >
+        {label}
+      </Text>
     </StyledButton>
   );
 };

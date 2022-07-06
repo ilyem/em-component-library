@@ -14,8 +14,9 @@ const Wrapper = styled.div<{ $alignVertical: boolean }>`
 const Label = styled((props) => <Text tag="label" {...props} />)`
   color: ${({ $error, theme }) =>
     $error ? theme.colours.error : theme.colours.primary};
-  font-weight: ${({ theme }) => theme.font.weight.bold};
-  text-transform: uppercase;
+  font-weight: ${({ theme, $isBold }) =>
+    $isBold ? theme.font.weight.bold : theme.font.weight.regular};
+  ${({ $isBold }) => ($isBold ? "text-transform: uppercase;" : "")};
   margin: ${({ $alignVertical }) =>
     $alignVertical ? "0 8px 4px 0" : "8px 8px 0 0"};
   white-space: nowrap;
@@ -77,6 +78,7 @@ export type TextInputProps = Omit<
   label?: string;
   labelPlacement?: "top" | "left";
   testId?: string;
+  isBold?: boolean;
 };
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -87,6 +89,7 @@ const TextInput: React.FC<TextInputProps> = ({
   inputRef,
   name,
   testId,
+  isBold = false,
   ...props
 }) => {
   const { colours } = useTheme() as ThemeType;
@@ -95,7 +98,12 @@ const TextInput: React.FC<TextInputProps> = ({
   return (
     <Wrapper $alignVertical={alignVertical}>
       {label && (
-        <Label $alignVertical={alignVertical} $error={!!error} htmlFor={name}>
+        <Label
+          $isBold={isBold}
+          $alignVertical={alignVertical}
+          $error={!!error}
+          htmlFor={name}
+        >
           {label}
         </Label>
       )}

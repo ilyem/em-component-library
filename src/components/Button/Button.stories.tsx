@@ -14,14 +14,19 @@ Login.args = {
   label: "Login",
 };
 
-export const Select =  Template.bind({});
+export const Select = Template.bind({});
 Select.args = {
   label: "Select",
-  type: "light"
+  type: "light",
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: "Disabled",
-  disabled: true
+  disabled: true,
+};
+export const Accent = Template.bind({});
+Accent.args = {
+  label: "accent",
+  isAccent: true,
 };

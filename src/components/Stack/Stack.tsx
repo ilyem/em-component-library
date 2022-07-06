@@ -8,7 +8,6 @@ const StyledStack = styled.div<{
 }>`
   display: flex;
   flex-direction: ${({ $direction }) => $direction};
-  width: 100%;
   & > *:not(:last-child) {
     ${({ $direction, $spaceSize }) =>
       ` margin-${$direction == "column" ? "bottom" : "right"}: ${$spaceSize};`};
@@ -22,12 +21,12 @@ type StackProps = React.ComponentPropsWithoutRef<"div"> & {
 
 const Stack: React.FC<StackProps> = ({
   children,
-  space,
+  space = "xs",
   direction = "column",
   ...props
 }) => {
   const { spacing } = useTheme() as ThemeType;
-  const spaceSize = space ? spacing[space] : "0px";
+  const spaceSize = spacing[space];
   return (
     <StyledStack $spaceSize={spaceSize} $direction={direction} {...props}>
       {children}

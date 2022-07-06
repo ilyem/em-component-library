@@ -22,7 +22,7 @@ const StyledText = styled(
     $lineHeight ? `${$lineHeight}px` : "1.25em"};
   font-family: ${({ theme }) => `${theme.font.family}, serif`};
   font-weight: ${({ theme, $weight }) => `${theme.font.weight[$weight]}`};
-  color: ${({ theme, $color }) => $color || theme.colours.primary};
+  color: ${({ theme, $color }) => $color || theme.colours.textOnSecondary};
   text-transform: ${({ $isUppercase }) =>
     $isUppercase ? "uppercase" : "none"};
 `;

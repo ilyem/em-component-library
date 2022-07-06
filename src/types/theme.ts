@@ -16,6 +16,8 @@ export interface ThemeType {
     primary: string;
     secondary: string;
     accent: string;
+    accentLight: string;
+    accentDark: string;
     primaryLight: string;
     primaryDark: string;
     disabled: string;
